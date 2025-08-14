@@ -59,8 +59,8 @@ export const ProfileForm = ({ onSubmit }: ProfileFormProps) => {
       // Call the onSubmit prop to transition to ChatInterface
       onSubmit(formData);
     } else {
-      // Fallback alert if no onSubmit prop is provided
-      alert('Thank you! We\'ll analyze your profile and send your personalized analysis soon.');
+      // Fallback console.log if no onSubmit prop is provided
+      console.log('Thank you! We\'ll analyze your profile and send your personalized analysis soon.');
     }
   };
 
@@ -190,7 +190,7 @@ export const ProfileForm = ({ onSubmit }: ProfileFormProps) => {
     if (currentStep === 9) {
       return (
         <div>
-          <h2 className="text-2xl font-bold mb-4 text-left">What's your name?</h2>
+          <h2 className="text-2xl font-bold mb-4 text-left">What&apos;s your name?</h2>
           <input type="text" value={formData.name} onChange={(e) => updateFormData('name', e.target.value)}
             placeholder="First and last name"
             className="w-full p-4 border-2 border-gray-300 rounded-xl focus:outline-none focus:border-blue-500 text-lg" />

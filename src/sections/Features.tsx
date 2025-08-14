@@ -99,7 +99,7 @@ const KeyMessageSection = () => (
           <p className="text-lg font-semibold mb-4 text-strong">Whether you:</p>
           <div className="grid md:grid-cols-2 gap-4 max-w-2xl mx-auto">
             <div className="bg-blue-50 dark:bg-blue-900/30 p-4 rounded-lg">
-              <p className="text-medium">Are starting from zero and don't know what "term" or "whole life" means</p>
+              <p className="text-medium">Are starting from zero and don&apos;t know what &quot;term&quot; or &quot;whole life&quot; means</p>
             </div>
             <div className="bg-blue-50 dark:bg-blue-900/30 p-4 rounded-lg">
               <p className="text-medium">Just want help fine-tuning your coverage</p>
@@ -167,7 +167,7 @@ export const Features = () => {
             <br /> cut the guesswork.
           </Title>
           <Details>
-            ClearCover's AI applies the right analysis every time.
+            ClearCover&apos;s AI applies the right analysis every time.
           </Details>
         </Text>
         <FeatureDemo
