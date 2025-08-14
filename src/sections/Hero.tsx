@@ -65,10 +65,7 @@ export const Hero = () => {
   if (showChat) {
     return (
       <Section className="items-center justify-center min-h-screen py-12">
-        <ChatInterface 
-          profileData={formData} 
-          onBack={handleBackFromChat}
-        />
+        <ChatInterface onBack={handleBackFromChat} />
       </Section>
     );
   }
