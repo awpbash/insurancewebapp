@@ -28,11 +28,11 @@ export const Hero = () => {
 
   // // Handle form completion and transition to chat
   // const handleFormSubmit = (data: FormData) => {
-  //   console.log('Hero received form data:', data);
-  //   setFormData(data);
-  //   setShowForm(false);
-  //   setShowChat(true);
-  //   console.log('Transitioning to chat interface');
+  //   console.log('Hero received form data:', data);
+  //   setFormData(data);
+  //   setShowForm(false);
+  //   setShowChat(true);
+  //   console.log('Transitioning to chat interface');
   // };
   const router = useRouter();
   const handleFormSubmit = (data: ProfileFormData) => {
@@ -110,7 +110,7 @@ export const Hero = () => {
           
           <p className="font-semibold mb-1 text-strong text-lg">Whether you:</p>
           <ul className="list-disc list-inside mb-3 space-y-0.5 text-lg">
-            <li>Are starting from zero and do not know what "term" or "whole life" means</li>
+            <li>Are starting from zero and do not know what &quot;term&quot; or &quot;whole life&quot; means</li>
             <li>Want help fine-tuning your coverage</li>
           </ul>
           
