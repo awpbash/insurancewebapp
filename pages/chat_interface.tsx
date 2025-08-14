@@ -21,7 +21,7 @@ export default function Chat({
             <Header isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
             <main>
                 {/* Pass the handleBack function to the onBack prop */}
-                <ChatInterface profileData={null} onBack={handleBack} />
+                <ChatInterface onBack={handleBack} />
             </main>
             <Footer />
         </div>
