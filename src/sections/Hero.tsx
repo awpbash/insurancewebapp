@@ -8,7 +8,7 @@ import { Button } from "../components/Button";
 import { ProfileForm } from "../sections/ProfileForm";
 import { ChatInterface } from "../sections/ChatInterface";
 import { useRouter } from "next/router";
-import { FormData } from "../types";
+import { FormData as ProfileFormData } from "../types";
 
 // Built with Vivid (https://vivid.lol) ✨
 
@@ -24,7 +24,7 @@ const Background = () => (
 export const Hero = () => {
   const [showForm, setShowForm] = useState(false);
   const [showChat, setShowChat] = useState(false);
-  const [formData, setFormData] = useState<FormData | null>(null);
+  const [formData, setFormData] = useState<ProfileFormData | null>(null);
 
   // // Handle form completion and transition to chat
   // const handleFormSubmit = (data: FormData) => {
@@ -35,7 +35,7 @@ export const Hero = () => {
   //   console.log('Transitioning to chat interface');
   // };
   const router = useRouter();
-  const handleFormSubmit = (data: FormData) => {
+  const handleFormSubmit = (data: ProfileFormData) => {
     console.log("Hero received form data:", data);
 
     // 1️⃣ Save form data to localStorage
