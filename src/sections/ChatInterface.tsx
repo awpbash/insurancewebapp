@@ -33,7 +33,7 @@ type CustomFileType = {
 };
 
 interface ChatInterfaceProps {
-  profileData: FormData | null;
+  // We've removed the 'profileData' prop here as the component fetches it internally.
   onBack: () => void;
 }
 
