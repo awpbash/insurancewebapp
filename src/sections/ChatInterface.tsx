@@ -33,8 +33,8 @@ type CustomFileType = {
 };
 
 interface ChatInterfaceProps {
-  onBack?: () => void;
   profileData: FormData | null;
+  onBack: () => void;
 }
 
 export const ChatInterface = ({ onBack }: ChatInterfaceProps) => {
