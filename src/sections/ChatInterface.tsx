@@ -34,6 +34,7 @@ type CustomFileType = {
 
 interface ChatInterfaceProps {
   onBack?: () => void;
+  profileData: FormData | null;
 }
 
 export const ChatInterface = ({ onBack }: ChatInterfaceProps) => {
