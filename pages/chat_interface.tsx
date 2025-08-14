@@ -14,7 +14,7 @@ export default function Chat({
         <div className="overflow-hidden col text-strong">
             <Header isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
             <main>
-                <ChatInterface />
+                <ChatInterface profileData={null} />
             </main>
             <Footer />
         </div>
