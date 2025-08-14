@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { FormData } from "../types";
 
 // GradientText component defined inline
 const GradientText = ({ children, className }: { children: React.ReactNode; className: string }) => {
@@ -9,17 +10,7 @@ const GradientText = ({ children, className }: { children: React.ReactNode; clas
   return <span className={gradientClass}>{children}</span>;
 };
 
-interface FormData {
-  age: string;
-  dependents: string;
-  occupation: string;
-  annualIncome: string;
-  smokingStatus: string;
-  healthConditions: string;
-  insuranceType: string;
-  involvementLevel: string;
-  name: string;
-}
+
 
 interface ProfileFormProps {
   onSubmit?: (data: FormData) => void;

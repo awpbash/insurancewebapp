@@ -8,20 +8,9 @@ import { Button } from "../components/Button";
 import { ProfileForm } from "../sections/ProfileForm";
 import { ChatInterface } from "../sections/ChatInterface";
 import { useRouter } from "next/router";
+import { FormData } from "../types";
 
 // Built with Vivid (https://vivid.lol) ✨
-
-interface FormData {
-  age: string;
-  dependents: string;
-  occupation: string;
-  annualIncome: string;
-  smokingStatus: string;
-  healthConditions: string;
-  insuranceType: string;
-  involvementLevel: string;
-  name: string;
-}
 
 const Background = () => (
   <div
@@ -121,7 +110,7 @@ export const Hero = () => {
           
           <p className="font-semibold mb-1 text-strong text-lg">Whether you:</p>
           <ul className="list-disc list-inside mb-3 space-y-0.5 text-lg">
-            <li>Are starting from zero and do not know what &quot;term&quot; or &quot;whole life&quot; means</li>
+            <li>Are starting from zero and do not know what "term" or "whole life" means</li>
             <li>Want help fine-tuning your coverage</li>
           </ul>
           
