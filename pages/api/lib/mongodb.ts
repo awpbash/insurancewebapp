@@ -28,7 +28,7 @@ if (process.env.NODE_ENV === 'development') {
         global._mongoClient = new MongoClient(uri, {
             serverApi: {
                 version: ServerApiVersion.v1,
-                strict: true,
+                strict: false,
                 deprecationErrors: true,
             },
         });
@@ -41,7 +41,7 @@ if (process.env.NODE_ENV === 'development') {
     client = new MongoClient(uri, {
         serverApi: {
             version: ServerApiVersion.v1,
-            strict: true,
+            strict: false,
             deprecationErrors: true,
         },
     });

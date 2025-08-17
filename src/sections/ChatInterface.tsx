@@ -264,7 +264,7 @@ export const ChatInterface = ({ onBack }: ChatInterfaceProps) => {
           ${combinedUserContent}
           Give me the relevant details as the best embedding to enable RAG to pull the best relevant documents.
         `;
-
+        console.log("hyde_msg", hyde_msg);
         const hyde_resp = await fetch('/api/chat', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -276,21 +276,25 @@ export const ChatInterface = ({ onBack }: ChatInterfaceProps) => {
         //   method: "POST",
         //   body: JSON.stringify({ message: hyde_data.message }),
         // });
+        console.log("hyde_data", hyde_data);
         const embeddings = await embedder(hyde_data.message, { pooling: 'mean', normalize: true });
         console.log("getting embeddings")
         // if (!embeddings.ok) {
         //   throw new Error(`HTTP error! status: ${embeddings.status}`);
         // }
-        const embedding = embeddings; // embeddings is already a Tensor object
+        const embedding = Array.from(await embeddings.data);
         console.log("embeddings", embedding);
-        const res = await fetch("/api/vector-search", {
+        const res = await fetch("/api/vector_search", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ embedding }),
         });
         const data = await res.json();
         const topMatches = data.matches;
-
+        console.log("topMatches", topMatches);
+        if (!topMatches || topMatches.length === 0) {
+          console.log("No relevant documents found for RAG.");
+        };
         const context = topMatches
           .map((doc: any, i: number) => `Document ${i + 1} (${doc.fileName}):\n${doc.textContent}`)
           .join("\n\n");

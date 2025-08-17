@@ -1,38 +1,38 @@
-// app/api/vector-search/route.js (or .ts if using TypeScript)
-import { NextResponse } from 'next/server';
+// pages/api/vector_search.ts
+import { NextApiRequest, NextApiResponse } from 'next';
 import { getDb } from './lib/mongodb';
 
-export async function POST(req: Request) {
-    try {
-        const body = await req.json();
-        const { embedding } = body;
+// This is the required handler function for Next.js Pages Router API routes
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  // Ensure the request method is POST
+  if (req.method !== 'POST') {
+    res.setHeader('Allow', ['POST']);
+    return res.status(405).json({ error: `Method ${req.method} Not Allowed` });
+  }
 
-        if (!embedding || !Array.isArray(embedding)) {
-            return NextResponse.json(
-                { error: 'Missing or invalid embedding array' },
-                { status: 400 }
-            );
-        }
+  try {
+    const { embedding } = req.body;
 
-        const db = await getDb();
-        const topMatches = await db.collection('documents').aggregate([
-            {
-                $vectorSearch: {
-                    index: 'vector_index', // MongoDB vector search index name
-                    path: 'embedding',     // field in documents containing embeddings
-                    queryVector: embedding,
-                    numCandidates: 100,
-                    limit: 5,
-                },
-            },
-        ]).toArray();
-
-        return NextResponse.json({ matches: topMatches });
-    } catch (err) {
-        console.error('Vector search error:', err);
-        return NextResponse.json(
-            { error: 'Internal server error' },
-            { status: 500 }
-        );
+    if (!embedding || !Array.isArray(embedding)) {
+      return res.status(400).json({ error: 'Missing or invalid embedding array' });
     }
+    console.log("searching...")
+    const db = await getDb();
+    const topMatches = await db.collection('documents').aggregate([
+      {
+        $vectorSearch: {
+          index: 'vector_index', // MongoDB vector search index name
+          path: 'embedding',     // field in documents containing embeddings
+          queryVector: embedding,
+          numCandidates: 100,
+          limit: 5,
+        },
+      },
+    ]).toArray();
+
+    return res.status(200).json({ matches: topMatches });
+  } catch (err) {
+    console.error('Vector search error:', err);
+    return res.status(500).json({ error: 'Internal server error' });
+  }
 }
