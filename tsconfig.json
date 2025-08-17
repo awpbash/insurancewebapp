@@ -1,10 +1,20 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
-    "paths":{"@/lib/*": ["src/lib/*"],
-      "@/components/*": ["src/components/*"]},
+    "paths": {
+      "@/lib/*": [
+        "src/lib/*"
+      ],
+      "@/components/*": [
+        "src/components/*"
+      ]
+    },
     "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -16,13 +26,21 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "incremental": true
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
   "include": [
-    "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "public/scripts/darkModeScript.js"
+    "next-env.d.ts",
+    "public/scripts/darkModeScript.js",
+    ".next/types/**/*.ts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules"
+  ]
 }

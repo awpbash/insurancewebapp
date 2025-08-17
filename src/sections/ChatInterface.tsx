@@ -5,6 +5,7 @@ import { GradientText } from '../components/GradientText';
 import { Paperclip } from 'lucide-react';
 import { RatingsModal } from '../components/RatingsModal'; // Import the new modal component
 import { useRouter } from 'next/router';
+import { pipeline } from '@xenova/transformers';
 
 interface ChatMessage {
   role: 'user' | 'assistant';
@@ -174,7 +175,7 @@ export const ChatInterface = ({ onBack }: ChatInterfaceProps) => {
     formData1.append("file", file);
 
     try {
-      const response1 = await fetch("/api/parse-pdf", {
+      const response1 = await fetch("/api/parse_pdf", {
         method: "POST",
         body: formData1,
       });
@@ -182,6 +183,7 @@ export const ChatInterface = ({ onBack }: ChatInterfaceProps) => {
         throw new Error(`HTTP error! status: ${response1.status}`);
       }
       const data1 = await response1.json();
+      console.log("File parsed successfully:", data1);
       setMessages((prev) => [
         ...prev,
         {
@@ -269,16 +271,18 @@ export const ChatInterface = ({ onBack }: ChatInterfaceProps) => {
           body: JSON.stringify({ messages: hyde_msg, profileData, uploadedFiles: uploadedFiles.map(f => f.file_name) })
         });
         const hyde_data = await hyde_resp.json();
-
-        const embeddings = await fetch("/api/embedder", {
-          method: "POST",
-          body: JSON.stringify({ message: hyde_data.message }),
-        });
-        if (!embeddings.ok) {
-          throw new Error(`HTTP error! status: ${embeddings.status}`);
-        }
-        const embedding = await embeddings.json();
-
+        const embedder = await pipeline('feature-extraction', 'Xenova/all-MiniLM-L6-v2');
+        // const embeddings = await fetch("/api/embedder", {
+        //   method: "POST",
+        //   body: JSON.stringify({ message: hyde_data.message }),
+        // });
+        const embeddings = await embedder(hyde_data.message, { pooling: 'mean', normalize: true });
+        console.log("getting embeddings")
+        // if (!embeddings.ok) {
+        //   throw new Error(`HTTP error! status: ${embeddings.status}`);
+        // }
+        const embedding = embeddings; // embeddings is already a Tensor object
+        console.log("embeddings", embedding);
         const res = await fetch("/api/vector-search", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
