@@ -55,7 +55,9 @@ export const Hero = () => {
     setShowForm(false);
     setFormData(null);
   };
-
+  const goToFutureWork = () => {
+    router.push("/future_work");
+  };
   // Handle back navigation from form
   const handleBackFromForm = () => {
     setShowForm(false);
@@ -81,6 +83,7 @@ export const Hero = () => {
       </Section>
     );
   }
+
 
   // Show landing page
   return (
@@ -123,6 +126,14 @@ export const Hero = () => {
           data-aos-delay="300"
         >
           Get Me Covered
+        </Button>
+      </div>
+      <div className="mt-1">
+        <Button 
+          className="px-12 py-2 text-2m font-bold mx-auto"
+          onClick={goToFutureWork}
+        >
+          Our Development
         </Button>
       </div>
     </Section>
